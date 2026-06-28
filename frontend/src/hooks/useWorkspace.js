@@ -26,8 +26,10 @@ function loadFromStorage() {
     if (!raw) return DEFAULT_PANELS;
     const parsed = JSON.parse(raw);
     // merge with defaults so a future new panel always appears, even for
-    // returning users with an older saved blob
-    return { ...DEFAULT_PANELS, ...parsed };
+    // returning users with an older saved blob — and force alertStack on
+    // since a stale/old saved blob (from before this panel mattered) may
+    // have it set to false, which is why the toggle showed as OFF.
+    return { ...DEFAULT_PANELS, ...parsed, alertStack: true };
   } catch {
     return DEFAULT_PANELS;
   }
