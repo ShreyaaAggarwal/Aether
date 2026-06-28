@@ -292,9 +292,5 @@ npm run preview
 # Author
 
 **Shreya Aggarwal**
-
-Frontend Developer | B.Tech CSE
-
 GitHub: https://github.com/ShreyaaAggarwal
 
-If you found this project interesting, feel free to explore the repository or share your feedback.
