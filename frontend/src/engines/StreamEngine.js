@@ -146,3 +146,8 @@ export class StreamEngine {
 }
 
 export const streamEngine = new StreamEngine();
+
+// Debug hook — lets you inspect live stream state from DevTools console.
+if (typeof window !== 'undefined') {
+  window.__streamEngine = streamEngine;
+}

@@ -234,7 +234,7 @@ export default function App() {
       <div className="boot-screen">
         <AmbientGrid />
         <div className="boot-screen__content">
-          <span className="boot-screen__mark">RPA-OS</span>
+          <span className="boot-screen__mark">Aether</span>
           <span className="boot-screen__status mono">Establishing telemetry link…</span>
         </div>
       </div>

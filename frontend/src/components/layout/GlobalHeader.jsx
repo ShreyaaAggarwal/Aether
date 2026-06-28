@@ -13,7 +13,7 @@ export const GlobalHeader = memo(function GlobalHeader({ isPaused, lastTickAgoMs
   return (
     <header className="global-header">
       <div className="global-header__identity">
-        <span className="global-header__mark">RPA-OS</span>
+        <span className="global-header__mark">Aether</span>
         <span className="global-header__divider" aria-hidden="true">/</span>
         <span className="global-header__subtitle">Enterprise Telemetry Terminal</span>
       </div>
