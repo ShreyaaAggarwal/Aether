@@ -1,0 +1,117 @@
+.ambient-grid-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.boot-screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.boot-screen__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.boot-screen__mark {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--signal-teal);
+  animation: boot-pulse 1.6s ease-in-out infinite;
+}
+.boot-screen__status {
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+@keyframes boot-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.global-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--hairline);
+  background: linear-gradient(180deg, var(--surface-0), var(--void));
+  backdrop-filter: blur(8px);
+}
+
+.global-header__identity {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.global-header__mark {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  color: var(--signal-teal);
+}
+.global-header__divider {
+  color: var(--text-tertiary);
+}
+.global-header__subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.global-header__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+.status-dot--healthy {
+  background: var(--signal-teal);
+  box-shadow: 0 0 0 0 rgba(22, 201, 176, 0.5);
+  animation: status-pulse 1.8s ease-out infinite;
+}
+.status-dot--stale {
+  background: var(--signal-amber);
+}
+@keyframes status-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(22, 201, 176, 0.45); }
+  70% { box-shadow: 0 0 0 6px rgba(22, 201, 176, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(22, 201, 176, 0); }
+}
+.global-header__status-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.workspace {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  padding: 0 16px 8px;
+}

@@ -1,0 +1,162 @@
+.virtualized-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface-0);
+}
+
+.grid-header {
+  display: flex;
+  border-bottom: 1px solid var(--hairline-bright);
+  background: var(--surface-1);
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+.grid-header__cell {
+  flex-shrink: 0;
+  padding: 10px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--dur-fast) var(--ease-signal), background var(--dur-fast) var(--ease-signal);
+}
+.grid-header__cell:hover {
+  color: var(--text-primary);
+  background: var(--surface-2);
+}
+.grid-header__cell--right {
+  justify-content: flex-end;
+}
+.grid-header__cell--sorted {
+  color: var(--signal-teal);
+}
+.grid-header__sort-indicator {
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+.grid-header__sort-indicator sup {
+  font-size: 8px;
+  margin-left: 1px;
+  color: var(--text-tertiary);
+}
+
+.virtualized-grid__scroller {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  contain: strict; /* isolates layout/paint to this subtree — keeps scroll cheap */
+}
+
+.virtualized-grid__spacer {
+  position: relative;
+  width: 100%;
+}
+
+.virtualized-grid__window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  will-change: transform;
+}
+
+.grid-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--hairline);
+  will-change: transform;
+  transition: background var(--dur-fast) var(--ease-signal);
+}
+.grid-row:hover {
+  background: var(--surface-1);
+}
+.grid-row:focus-visible {
+  outline: 1px solid var(--signal-blue);
+  outline-offset: -1px;
+}
+.grid-row--selected {
+  background: rgba(91, 140, 255, 0.1);
+  box-shadow: inset 2px 0 0 var(--signal-blue);
+}
+.grid-row--stale {
+  cursor: pointer;
+}
+.grid-row--stale:hover {
+  background: rgba(157, 123, 255, 0.08);
+  box-shadow: inset 2px 0 0 var(--signal-violet);
+}
+
+.grid-row--alert-failed-status {
+  animation: row-flash-critical 1.6s var(--ease-signal);
+}
+.grid-row--alert-negative-roi {
+  animation: row-flash-warning 1.6s var(--ease-signal);
+}
+@keyframes row-flash-critical {
+  0% { background: rgba(255, 77, 79, 0.32); box-shadow: inset 2px 0 0 var(--signal-red); }
+  100% { background: transparent; box-shadow: inset 2px 0 0 rgba(255, 77, 79, 0.4); }
+}
+@keyframes row-flash-warning {
+  0% { background: rgba(255, 176, 32, 0.28); box-shadow: inset 2px 0 0 var(--signal-amber); }
+  100% { background: transparent; box-shadow: inset 2px 0 0 rgba(255, 176, 32, 0.35); }
+}
+
+.grid-row__cell {
+  flex-shrink: 0;
+  padding: 0 12px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.grid-row__cell--right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid-cell__highlight {
+  background: rgba(22, 201, 176, 0.35);
+  color: var(--text-primary);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.status-pill {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+.status-pill--completed { background: rgba(22, 201, 176, 0.15); color: var(--signal-teal); }
+.status-pill--active { background: rgba(91, 140, 255, 0.15); color: var(--signal-blue); }
+.status-pill--failed { background: rgba(255, 77, 79, 0.18); color: var(--signal-red); }
+.status-pill--default { background: var(--surface-2); color: var(--text-tertiary); }
+
+.roi-value--negative { color: var(--signal-red); font-weight: 600; }
+.roi-value--positive { color: var(--text-secondary); }
+
+.virtualized-grid__empty {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 13px;
+}

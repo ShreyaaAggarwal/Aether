@@ -1,0 +1,31 @@
+.footer-diagnostics {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 20px;
+  border-top: 1px solid var(--hairline);
+  background: var(--surface-0);
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.diag-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.diag-item__label {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+}
+.diag-item__value {
+  font-size: 11px;
+  font-weight: 600;
+}
+.diag-item__value--teal { color: var(--signal-teal); }
+.diag-item__value--blue { color: var(--signal-blue); }
+.diag-item__value--amber { color: var(--signal-amber); }
+.diag-item__value--red { color: var(--signal-red); }
+.diag-item__value--violet { color: var(--signal-violet); }

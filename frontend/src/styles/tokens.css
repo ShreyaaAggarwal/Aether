@@ -1,0 +1,110 @@
+/* ==========================================================================
+   tokens.css — design system for the RPA-OS telemetry terminal
+   ========================================================================== */
+:root {
+  /* --- Surface palette: void → panel → raised, ascending elevation --- */
+  --void: #05070a;
+  --surface-0: #0b0f16;
+  --surface-1: #11161f;
+  --surface-2: #161c28;
+  --hairline: #232a38;
+  --hairline-bright: #303a4d;
+
+  /* --- Signal colors: each one means something specific, never decorative --- */
+  --signal-teal: #16c9b0;      /* live / healthy / playing */
+  --signal-teal-dim: #0d7a6a;
+  --signal-blue: #5b8cff;      /* data / informational accents */
+  --signal-amber: #ffb020;     /* warning / negative-roi alert */
+  --signal-red: #ff4d4f;       /* critical / failed-status alert */
+  --signal-violet: #9d7bff;    /* paused state */
+
+  /* --- Text --- */
+  --text-primary: #e7ebf2;
+  --text-secondary: #8a93a6;
+  --text-tertiary: #5b6376;
+
+  /* --- Type --- */
+  --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
+  --font-ui: 'Inter', -apple-system, sans-serif;
+
+  /* --- Motion --- */
+  --ease-signal: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms;
+  --dur-med: 280ms;
+  --dur-slow: 480ms;
+
+  /* --- Geometry --- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --row-height: 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-med: 0ms;
+    --dur-slow: 0ms;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden; /* the app owns its own internal scroll regions */
+}
+
+::selection {
+  background: var(--signal-teal-dim);
+  color: var(--text-primary);
+}
+
+/* Scrollbars styled to match the terminal aesthetic rather than left default */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hairline-bright);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--signal-teal-dim);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal-blue);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' 1; /* tabular numerals — critical for a numeric grid */
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
